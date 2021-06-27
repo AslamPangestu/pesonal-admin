@@ -56,7 +56,7 @@
       >
         <template slot="title">
           <div class="notification d-none d-lg-block d-xl-block"></div>
-          <i class="tim-icons icon-sound-wave"></i>
+          <i class="tim-icons icon-bell-55"></i>
           <p class="d-lg-none">New Notifications</p>
         </template>
         <li class="nav-link">
@@ -107,13 +107,15 @@
   </base-nav>
 </template>
 <script>
-import { CollapseTransition } from 'vue2-transitions'
+// import { CollapseTransition } from 'vue2-transitions'
 import BaseNav from '@/components/Navbar/BaseNav'
 import Modal from '@/components/Modal'
 
+import { ReplaceAll, CapitalizeFirstLetter } from '@/util/formatter'
+
 export default {
   components: {
-    CollapseTransition,
+    // CollapseTransition,
     BaseNav,
     Modal,
   },
@@ -129,22 +131,18 @@ export default {
     routeName() {
       const { path } = this.$route
       const parts = path.split('/')
-      if (parts == ',') {
+      if (parts === ',') {
         return 'Dashboard'
       }
-      return parts.map((p) => this.capitalizeFirstLetter(p)).join(' ')
+      return parts
+        .map((p) => ReplaceAll(CapitalizeFirstLetter(p), '-', ' '))
+        .join(' ')
     },
     isRTL() {
       return this.$rtl.isRTL
     },
   },
   methods: {
-    capitalizeFirstLetter(string) {
-      if (!string || typeof string !== 'string') {
-        return ''
-      }
-      return string.charAt(0).toUpperCase() + string.slice(1)
-    },
     closeDropDown() {
       this.activeNotifications = false
     },

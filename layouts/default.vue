@@ -5,86 +5,8 @@
       :background-color="sidebarBackground"
       :short-title="$t('sidebar.shortTitle')"
       :title="$t('sidebar.title')"
-    >
-      <template slot="links" slot-scope="props">
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.dashboard'),
-            icon: 'tim-icons icon-chart-pie-36',
-            path: '/',
-          }"
-        >
-        </sidebar-item>
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.icons'),
-            icon: 'tim-icons icon-atom',
-            path: '/icons',
-          }"
-        >
-        </sidebar-item>
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.maps'),
-            icon: 'tim-icons icon-pin',
-            path: '/google',
-          }"
-        >
-        </sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.notifications'),
-            icon: 'tim-icons icon-bell-55',
-            path: '/notifications',
-          }"
-        >
-        </sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.userProfile'),
-            icon: 'tim-icons icon-single-02',
-            path: '/user',
-          }"
-        >
-        </sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.regularTables'),
-            icon: 'tim-icons icon-puzzle-10',
-            path: '/regular',
-          }"
-        ></sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.typography'),
-            icon: 'tim-icons icon-align-center',
-            path: '/typography',
-          }"
-        ></sidebar-item>
-
-        <sidebar-item
-          :link="{
-            name: $t('sidebar.rtl'),
-            icon: 'tim-icons icon-world',
-            path: localePath('/rtl', 'ar'),
-          }"
-        ></sidebar-item>
-
-        <li class="active-pro">
-          <a
-            href="https://www.creative-tim.com/product/nuxt-black-dashboard-pro"
-            target="_blank"
-          >
-            <i class="tim-icons icon-spaceship"></i>
-            <p>Upgrade to PRO</p>
-          </a>
-        </li>
-      </template>
-    </side-bar>
+      :sidebar-links="menus"
+    />
     <!--Share plugin (for demo purposes). You can remove it if don't plan on using it-->
     <sidebar-share :background-color.sync="sidebarBackground"> </sidebar-share>
     <div class="main-panel" :data="sidebarBackground">
@@ -109,8 +31,9 @@ import SidebarShare from '@/components/Layout/SidebarSharePlugin'
 
 import DashboardNavbar from '@/components/Layout/DashboardNavbar.vue'
 import ContentFooter from '@/components/Layout/ContentFooter.vue'
-import DashboardContent from '@/components/Layout/Content.vue'
-import { SlideYDownTransition, ZoomCenterTransition } from 'vue2-transitions'
+// import DashboardContent from '@/components/Layout/Content.vue'
+// import { SlideYDownTransition, ZoomCenterTransition } from 'vue2-transitions'
+import { ZoomCenterTransition } from 'vue2-transitions'
 function hasElement(className) {
   return document.getElementsByClassName(className).length > 0
 }
@@ -130,8 +53,6 @@ export default {
   components: {
     DashboardNavbar,
     ContentFooter,
-    DashboardContent,
-    SlideYDownTransition,
     ZoomCenterTransition,
     SidebarShare,
   },
@@ -144,6 +65,46 @@ export default {
     isFullScreenRoute() {
       return this.$route.path === '/maps/full-screen'
     },
+  },
+  created() {
+    this.menus = [
+      {
+        name: this.$t('sidebar.dashboard'),
+        path: '/',
+        icon: 'tim-icons icon-chart-pie-36',
+        children: [],
+      },
+      {
+        name: this.$t('sidebar.userProfile'),
+        path: '/user-profile',
+        icon: 'tim-icons icon-single-02',
+        children: [],
+      },
+      {
+        name: this.$t('sidebar.experience'),
+        path: '/experiences',
+        icon: 'tim-icons icon-paper',
+        children: [],
+      },
+      {
+        name: this.$t('sidebar.portfolio'),
+        path: '/portfolios',
+        icon: 'tim-icons icon-molecule-40',
+        children: [],
+      },
+      {
+        name: this.$t('sidebar.skill'),
+        path: '/skills',
+        icon: 'tim-icons icon-user-run',
+        children: [],
+      },
+      {
+        name: this.$t('sidebar.contact'),
+        path: '/contacts',
+        icon: 'tim-icons icon-support-17',
+        children: [],
+      },
+    ]
   },
   mounted() {
     this.initScrollbar()

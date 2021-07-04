@@ -27,7 +27,7 @@
           data-toggle="modal"
           data-target="#searchModal"
         >
-          <i class="tim-icons icon-zoom-split"></i>
+          <i class="fas fa-search" />
         </button>
         <!-- You can choose types of search input -->
       </div>
@@ -56,7 +56,7 @@
       >
         <template slot="title">
           <div class="notification d-none d-lg-block d-xl-block"></div>
-          <i class="tim-icons icon-bell-55"></i>
+          <i class="fas fa-bell" />
           <p class="d-lg-none">New Notifications</p>
         </template>
         <li class="nav-link">

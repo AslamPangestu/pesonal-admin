@@ -95,12 +95,6 @@ Within the download you'll find the following directories and files:
     |   |-- README.md
     |   |-- css
     |   |   |-- demo.css
-    |   |   |-- nucleo-icons.css
-    |   |-- fonts
-    |   |   |-- nucleo.eot
-    |   |   |-- nucleo.ttf
-    |   |   |-- nucleo.woff
-    |   |   |-- nucleo.woff2
     |   |-- sass
     |       |-- black-dashboard.scss
     |       |-- dashboard

@@ -71,37 +71,31 @@ export default {
       {
         name: this.$t('sidebar.dashboard'),
         path: '/',
-        icon: 'tim-icons icon-chart-pie-36',
+        icon: 'fas fa-chart-pie',
         children: [],
       },
       {
         name: this.$t('sidebar.userProfile'),
         path: '/user-profile',
-        icon: 'tim-icons icon-single-02',
+        icon: 'fas fa-user',
         children: [],
       },
       {
         name: this.$t('sidebar.experience'),
         path: '/experiences',
-        icon: 'tim-icons icon-paper',
+        icon: 'fas fa-project-diagram',
         children: [],
       },
       {
         name: this.$t('sidebar.portfolio'),
         path: '/portfolios',
-        icon: 'tim-icons icon-molecule-40',
+        icon: 'fas fa-book',
         children: [],
       },
       {
         name: this.$t('sidebar.skill'),
         path: '/skills',
-        icon: 'tim-icons icon-user-run',
-        children: [],
-      },
-      {
-        name: this.$t('sidebar.contact'),
-        path: '/contacts',
-        icon: 'tim-icons icon-support-17',
+        icon: 'fas fa-tools',
         children: [],
       },
     ]

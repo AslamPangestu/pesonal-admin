@@ -1,18 +1,18 @@
 <template>
   <div class="row">
-    <div class="col-md-8"><edit-profile-form> </edit-profile-form></div>
-    <div class="col-md-4"><user-card> </user-card></div>
+    <div class="col-md-4"><upload-avatar /></div>
+    <div class="col-md-8"><edit-form /></div>
   </div>
 </template>
 <script>
-import EditProfileForm from '../components/UserProfile/EditProfileForm.vue'
-import UserCard from '../components/UserProfile/UserCard.vue'
+import EditForm from '@/modules/userProfile/EditForm'
+import UploadAvatar from '@/modules/userProfile/UploadAvatar'
 
 export default {
   name: 'UserProfilePage',
   components: {
-    EditProfileForm,
-    UserCard,
+    EditForm,
+    UploadAvatar,
   },
 }
 </script>

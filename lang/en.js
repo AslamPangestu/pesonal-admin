@@ -9,7 +9,6 @@ module.exports = {
     experience: 'Experiences',
     portfolio: 'Portfolios',
     skill: 'Skills',
-    contact: 'Contacts',
 
     pages: 'Pages',
     pricing: 'Pricing',

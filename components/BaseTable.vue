@@ -1,66 +1,163 @@
 <template>
-  <table class="table tablesorter" :class="tableClass">
-    <thead :class="theadClasses">
-      <tr>
-        <slot name="columns" :columns="columns">
-          <th v-for="column in columns" :key="column">{{ column }}</th>
-        </slot>
-      </tr>
-    </thead>
-    <tbody :class="tbodyClasses">
-      <tr v-for="(item, index) in data" :key="index">
-        <slot :row="item" :index="index">
-          <td v-for="(column, idx) in columns" :key="idx">
-            <template v-if="hasValue(item, column)">
-              {{ itemValue(item, column) }}
-            </template>
-          </td>
-        </slot>
-      </tr>
-    </tbody>
-  </table>
+  <card card-body-classes="table-full-width">
+    <div class="d-flex justify-content-between">
+      <h4 slot="header" class="card-title">{{ title }}</h4>
+      <nuxt-link :to="`${currentPath}/create`">
+        <base-button
+          v-if="canCreated"
+          native-type="submit"
+          type="primary"
+          class="btn-fill"
+        >
+          Create
+        </base-button>
+      </nuxt-link>
+    </div>
+    <el-table :data="data">
+      <template v-for="(column, idx) in columns">
+        <el-table-column
+          :key="idx"
+          :min-width="minWidth(column.minWidth)"
+          :sortable="sortable(column.sortable)"
+          :label="stringValue(column.label)"
+          :property="stringValue(column.property)"
+          :align="align(column.align)"
+          :header-align="align(column.headerAlign)"
+        />
+      </template>
+      <template v-if="canAction">
+        <el-table-column
+          min-width="150"
+          label="Actions"
+          header-align="center"
+          align="center"
+          style="margin-top: 16px"
+        >
+          <template slot-scope="scope">
+            <nuxt-link :to="`${currentPath}/${scope.$index}`">
+              <base-button v-if="canView" size="sm" link type="info"
+                ><i class="fas fa-eye" />
+              </base-button>
+            </nuxt-link>
+            <nuxt-link :to="`${currentPath}/${scope.$index}/edit`">
+              <base-button v-if="canEdit" size="sm" link type="warning"
+                ><i class="fas fa-pencil-alt" />
+              </base-button>
+            </nuxt-link>
+            <base-button
+              v-if="canDelete"
+              size="sm"
+              link
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+              ><i class="fas fa-trash" />
+            </base-button>
+          </template>
+        </el-table-column>
+      </template>
+    </el-table>
+    <div class="d-flex justify-content-center">
+      <el-pagination
+        hide-on-single-page
+        background
+        :layout="layout"
+        :total="1000"
+        :current-page.sync="currentPage"
+      />
+    </div>
+  </card>
 </template>
 <script>
+import { Table, TableColumn, Pagination } from 'element-ui'
+
 export default {
   name: 'BaseTable',
+  components: {
+    [Table.name]: Table,
+    [TableColumn.name]: TableColumn,
+    [Pagination.name]: Pagination,
+  },
   props: {
+    title: { type: String, default: '' },
+    data: { type: Array, default: () => [] },
+    actions: {
+      type: Array,
+      description: 'create|edit|view|delete',
+      default: () => [],
+    },
     columns: {
       type: Array,
+      // {
+      //     minWidth: '0',
+      //     sortable: false,
+      //     align: 'left',
+      //     headerAlign: 'left',
+      //     label: '',
+      //     property: '',
+      // }
       default: () => [],
-      description: 'Table columns',
-    },
-    data: {
-      type: Array,
-      default: () => [],
-      description: 'Table data',
-    },
-    type: {
-      type: String, // striped | hover
-      default: '',
-      description: 'Whether table is striped or hover type',
-    },
-    theadClasses: {
-      type: String,
-      default: '',
-      description: '<thead> css classes',
-    },
-    tbodyClasses: {
-      type: String,
-      default: '',
-      description: '<tbody> css classes',
     },
   },
+  data() {
+    return {
+      currentPage: 1,
+    }
+  },
   computed: {
-    tableClass() {
-      return this.type && `table-${this.type}`
+    currentPath() {
+      return this.$route.path
+    },
+    canCreated() {
+      return this.actions.includes('create')
+    },
+    canEdit() {
+      return this.actions.includes('edit')
+    },
+    canView() {
+      return this.actions.includes('view')
+    },
+    canDelete() {
+      return this.actions.includes('delete')
+    },
+    canAction() {
+      return this.canEdit || this.canView || this.canDelete
+    },
+    layout() {
+      if (this.currentPage === 1) {
+        return 'pager, next'
+      }
+      return 'prev, pager, next'
     },
   },
   methods: {
-    hasValue(item, column) {
-      return item[column.toLowerCase()] !== 'undefined'
+    // DEFAULT VALUES
+    minWidth(val) {
+      if (val) {
+        return val
+      }
+      return '150'
     },
-    itemValue(item, column) {
-      return item[column.toLowerCase()]
+    stringValue(val) {
+      if (val) {
+        return val
+      }
+      return ''
+    },
+    sortable(val) {
+      if (val) {
+        return val
+      }
+      return false
+    },
+    align(val) {
+      if (val) {
+        return val
+      }
+      return 'left'
+    },
+    // HANDLER
+    handleDelete(index, row) {
+      // console.log('handleDelete', index, row)
     },
   },
 }

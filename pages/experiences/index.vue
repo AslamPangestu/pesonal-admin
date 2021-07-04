@@ -3,7 +3,9 @@
     <div class="col-md-12">
       <base-table
         title="Experiences"
-        :data="tableData"
+        :data="data"
+        :current-page="currentPage"
+        :loading="loading"
         :columns="columns"
         :actions="['create', 'edit', 'delete', 'view']"
       />
@@ -15,41 +17,33 @@ export default {
   name: 'ExperiencePage',
   data() {
     return {
-      tableData: [
+      currentPage: 2,
+      loading: false,
+      data: [
         {
           id: 1,
-          name: 'Dakota Rice',
-          salary: '$36.738',
-          country: 'Niger',
-          city: 'Oud-Turnhout',
+          year: 'Niger',
+          title: 'Dakota Rice',
         },
         {
           id: 2,
-          name: 'Minerva Hooper',
-          salary: '$23,789',
-          country: 'Curaçao',
-          city: 'Sinaai-Waas',
+          year: 'Curaçao',
+          title: 'Minerva Hooper',
         },
         {
           id: 3,
-          name: 'Sage Rodriguez',
-          salary: '$56,142',
-          country: 'Netherlands',
-          city: 'Baileux',
+          year: 'Netherlands',
+          title: 'Sage Rodriguez',
         },
         {
           id: 4,
-          name: 'Philip Chaney',
-          salary: '$38,735',
-          country: 'Korea, South',
-          city: 'Overland Park',
+          year: 'Korea, South',
+          title: 'Philip Chaney',
         },
         {
           id: 5,
-          name: 'Doris Greene',
-          salary: '$63,542',
-          country: 'Malawi',
-          city: 'Feldkirchen in Kärnten',
+          year: 'Malawi',
+          title: 'Doris Greene',
         },
       ],
     }
@@ -58,25 +52,13 @@ export default {
     this.columns = [
       {
         sortable: true,
-        label: 'Name',
-        property: 'name',
+        label: 'Year',
+        property: 'year',
       },
       {
         sortable: true,
-        label: 'Country',
-        property: 'country',
-      },
-      {
-        sortable: true,
-        label: 'City',
-        property: 'city',
-      },
-      {
-        sortable: true,
-        label: 'Salary',
-        property: 'salary',
-        align: 'right',
-        headerAlign: 'right',
+        label: 'Title',
+        property: 'title',
       },
     ]
   },

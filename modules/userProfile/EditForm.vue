@@ -1,7 +1,7 @@
 <template>
   <card>
     <h5 slot="header" class="title">Edit Profile</h5>
-    <form @submit.prevent="update">
+    <form @submit.prevent="submit">
       <div class="row">
         <div class="col-md-4">
           <base-input
@@ -81,7 +81,7 @@ export default {
     }
   },
   methods: {
-    update() {
+    submit() {
       alert('Your data: ' + JSON.stringify(this.user))
     },
   },

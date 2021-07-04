@@ -1,5 +1,9 @@
 <template>
-  <card card-body-classes="table-full-width">
+  <card
+    v-loading="loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+    card-body-classes="table-full-width"
+  >
     <div class="d-flex justify-content-between">
       <h4 slot="header" class="card-title">{{ title }}</h4>
       <nuxt-link :to="`${currentPath}/create`">
@@ -14,9 +18,9 @@
       </nuxt-link>
     </div>
     <el-table :data="data">
-      <template v-for="(column, idx) in columns">
+      <template v-for="column in columns">
         <el-table-column
-          :key="idx"
+          :key="column.id"
           :min-width="minWidth(column.minWidth)"
           :sortable="sortable(column.sortable)"
           :label="stringValue(column.label)"
@@ -34,12 +38,12 @@
           style="margin-top: 16px"
         >
           <template slot-scope="scope">
-            <nuxt-link :to="`${currentPath}/${scope.$index}`">
+            <nuxt-link :to="`${currentPath}/${scope.row.id}`">
               <base-button v-if="canView" size="sm" link type="info"
                 ><i class="fas fa-eye" />
               </base-button>
             </nuxt-link>
-            <nuxt-link :to="`${currentPath}/${scope.$index}/edit`">
+            <nuxt-link :to="`${currentPath}/${scope.row.id}/edit`">
               <base-button v-if="canEdit" size="sm" link type="warning"
                 ><i class="fas fa-pencil-alt" />
               </base-button>
@@ -49,7 +53,7 @@
               size="sm"
               link
               type="danger"
-              @click="handleDelete(scope.$index, scope.row)"
+              @click="handleDelete(scope.row)"
               ><i class="fas fa-trash" />
             </base-button>
           </template>
@@ -80,6 +84,8 @@ export default {
   props: {
     title: { type: String, default: '' },
     data: { type: Array, default: () => [] },
+    currentPage: { type: Number, default: 1 },
+    loading: { type: Boolean, default: false },
     actions: {
       type: Array,
       description: 'create|edit|view|delete',
@@ -97,11 +103,6 @@ export default {
       // }
       default: () => [],
     },
-  },
-  data() {
-    return {
-      currentPage: 1,
-    }
   },
   computed: {
     currentPath() {
@@ -156,7 +157,7 @@ export default {
       return 'left'
     },
     // HANDLER
-    handleDelete(index, row) {
+    handleDelete(row) {
       // console.log('handleDelete', index, row)
     },
   },

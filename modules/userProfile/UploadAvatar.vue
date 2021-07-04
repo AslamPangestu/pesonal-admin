@@ -1,6 +1,6 @@
 <template>
   <card class="card-user">
-    <form @submit.prevent="upload">
+    <form @submit.prevent="submit">
       <div class="author">
         <div class="block block-one"></div>
         <div class="block block-two"></div>
@@ -30,7 +30,7 @@ export default {
     }
   },
   methods: {
-    upload() {
+    submit() {
       alert('Your data: ' + JSON.stringify(this.user))
     },
   },

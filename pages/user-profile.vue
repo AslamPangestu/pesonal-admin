@@ -4,6 +4,7 @@
     <div class="col-md-8"><edit-form /></div>
   </div>
 </template>
+
 <script>
 import EditForm from '@/modules/userProfile/EditForm'
 import UploadAvatar from '@/modules/userProfile/UploadAvatar'

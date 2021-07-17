@@ -20,65 +20,6 @@
     </div>
 
     <ul class="navbar-nav" :class="$rtl.isRTL ? 'mr-auto' : 'ml-auto'">
-      <div class="search-bar input-group" @click="searchModalVisible = true">
-        <button
-          id="search-button"
-          class="btn btn-link"
-          data-toggle="modal"
-          data-target="#searchModal"
-        >
-          <i class="fas fa-search" />
-        </button>
-        <!-- You can choose types of search input -->
-      </div>
-      <modal
-        id="searchModal"
-        :show.sync="searchModalVisible"
-        class="modal-search"
-        :centered="false"
-        :show-close="true"
-      >
-        <input
-          id="inlineFormInputGroup"
-          slot="header"
-          v-model="searchQuery"
-          type="text"
-          class="form-control"
-          placeholder="SEARCH"
-        />
-      </modal>
-      <base-dropdown
-        tag="li"
-        :menu-on-right="!$rtl.isRTL"
-        title-tag="a"
-        title-classes="nav-link"
-        class="nav-item"
-      >
-        <template slot="title">
-          <div class="notification d-none d-lg-block d-xl-block"></div>
-          <i class="fas fa-bell" />
-          <p class="d-lg-none">New Notifications</p>
-        </template>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item"
-            >Mike John responded to your email</a
-          >
-        </li>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">You have 5 more tasks</a>
-        </li>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item"
-            >Your friend Michael is in town</a
-          >
-        </li>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Another notification</a>
-        </li>
-        <li class="nav-link">
-          <a href="#" class="nav-item dropdown-item">Another one</a>
-        </li>
-      </base-dropdown>
       <base-dropdown
         tag="li"
         :menu-on-right="!$rtl.isRTL"
@@ -106,7 +47,6 @@
 <script>
 // import { CollapseTransition } from 'vue2-transitions'
 import BaseNav from '@/components/Navbar/BaseNav'
-import Modal from '@/components/Modal'
 
 import { ReplaceAll, CapitalizeFirstLetter } from '@/util/formatter'
 
@@ -114,7 +54,6 @@ export default {
   components: {
     // CollapseTransition,
     BaseNav,
-    Modal,
   },
   data() {
     return {

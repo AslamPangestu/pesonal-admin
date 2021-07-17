@@ -85,7 +85,7 @@ export default {
     },
   },
   mounted() {
-    if (this.titleType === 'Detail') {
+    if (this.titleType !== 'Create') {
       this.loading = true
       // TODO: Inquiry
       this.loading = false

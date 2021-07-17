@@ -39,27 +39,50 @@
         >
           <template slot-scope="scope">
             <nuxt-link :to="`${currentPath}/${scope.row.id}`">
-              <base-button v-if="canView" size="sm" link type="info"
-                ><i class="fas fa-eye" />
-              </base-button>
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Detail"
+                placement="top"
+              >
+                <base-button v-if="canView" size="sm" link type="info"
+                  ><i class="fas fa-eye" />
+                </base-button>
+              </el-tooltip>
             </nuxt-link>
             <nuxt-link :to="`${currentPath}/${scope.row.id}/edit`">
-              <base-button v-if="canEdit" size="sm" link type="warning"
-                ><i class="fas fa-pencil-alt" />
-              </base-button>
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Edit"
+                placement="top"
+              >
+                <base-button v-if="canEdit" size="sm" link type="warning"
+                  ><i class="fas fa-pencil-alt" />
+                </base-button>
+              </el-tooltip>
             </nuxt-link>
-            <base-button
-              v-if="canDelete"
-              size="sm"
-              link
-              type="danger"
-              @click="handleDelete(scope.row)"
-              ><i class="fas fa-trash" />
-            </base-button>
+
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="Delete"
+              placement="top"
+            >
+              <base-button
+                v-if="canDelete"
+                size="sm"
+                link
+                type="danger"
+                @click="handleDelete(scope.row)"
+                ><i class="fas fa-trash" />
+              </base-button>
+            </el-tooltip>
           </template>
         </el-table-column>
       </template>
     </el-table>
+    <!-- PAGINATION -->
     <div class="d-flex justify-content-center">
       <el-pagination
         hide-on-single-page
@@ -69,10 +92,26 @@
         :current-page.sync="currentPage"
       />
     </div>
+    <!-- DIALOG DELETE -->
+    <modal-confirm v-model="showDelete" title="Confirm" @confirm="onOkDelete">
+      <div>Apakah anda yakin ingin menghapus data berikut?</div>
+      <table>
+        <tbody>
+          <tr v-for="(item, idx) in deleteContent" :key="idx">
+            <td>
+              <b>{{ item.label }}</b>
+            </td>
+            <td style="width: 16px; text-align: center">:</td>
+            <td>{{ item.value }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </modal-confirm>
   </card>
 </template>
 <script>
 import { Table, TableColumn, Pagination } from 'element-ui'
+import ModalConfirm from '@/components/Modal/Confirm'
 
 export default {
   name: 'BaseTable',
@@ -80,6 +119,7 @@ export default {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
     [Pagination.name]: Pagination,
+    ModalConfirm,
   },
   props: {
     title: { type: String, default: '' },
@@ -103,6 +143,12 @@ export default {
       // }
       default: () => [],
     },
+  },
+  data() {
+    return {
+      showDelete: false,
+      deleteData: {},
+    }
   },
   computed: {
     currentPath() {
@@ -128,6 +174,13 @@ export default {
         return 'pager, next'
       }
       return 'prev, pager, next'
+    },
+    deleteContent() {
+      const res = []
+      this.columns.forEach((item) => {
+        res.push({ label: item.label, value: this.deleteData[item.property] })
+      })
+      return res
     },
   },
   methods: {
@@ -158,7 +211,16 @@ export default {
     },
     // HANDLER
     handleDelete(row) {
+      this.showDelete = true
+      this.deleteData = row
       // console.log('handleDelete', index, row)
+    },
+    onCancleDelete() {
+      this.showDelete = false
+    },
+    onOkDelete() {
+      this.$emit('delete', this.deleteData)
+      this.showDelete = false
     },
   },
 }

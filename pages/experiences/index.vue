@@ -18,8 +18,8 @@ export default {
   layout: 'main',
   data() {
     return {
-      currentPage: 2,
       loading: false,
+      currentPage: 1,
       data: [
         {
           id: 1,
@@ -51,6 +51,12 @@ export default {
   },
   created() {
     this.columns = [
+      {
+        sortable: true,
+        label: 'ID',
+        property: 'id',
+        minWidth: '75',
+      },
       {
         sortable: true,
         label: 'Year',

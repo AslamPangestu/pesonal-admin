@@ -3,7 +3,9 @@
     <div class="col-md-12">
       <base-table
         title="Skills"
-        :data="tableData"
+        :data="data"
+        :current-page="currentPage"
+        :loading="loading"
         :columns="columns"
         :actions="['create', 'edit', 'delete']"
       />
@@ -16,7 +18,9 @@ export default {
   layout: 'main',
   data() {
     return {
-      tableData: [
+      loading: false,
+      currentPage: 1,
+      data: [
         {
           id: 1,
           name: 'Dakota Rice',
@@ -47,6 +51,12 @@ export default {
   },
   created() {
     this.columns = [
+      {
+        sortable: true,
+        label: 'ID',
+        property: 'id',
+        minWidth: '75',
+      },
       {
         sortable: true,
         label: 'Name',

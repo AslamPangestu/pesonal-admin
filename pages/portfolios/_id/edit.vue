@@ -7,7 +7,7 @@
 <script>
 import PortfolioForm from '@/modules/portfolio/Form'
 export default {
-  name: 'EditExperiencePage',
+  name: 'EditPortfolioPage',
   components: { PortfolioForm },
   layout: 'main',
 }

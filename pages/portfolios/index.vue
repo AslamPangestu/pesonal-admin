@@ -5,7 +5,7 @@
         title="Portfolios"
         :data="tableData"
         :columns="columns"
-        :actions="['create']"
+        :actions="['create', 'edit', 'delete', 'view']"
       />
     </div>
   </div>
@@ -19,38 +19,28 @@ export default {
       tableData: [
         {
           id: 1,
-          name: 'Dakota Rice',
-          salary: '$36.738',
-          country: 'Niger',
-          city: 'Oud-Turnhout',
+          title: 'Dakota Rice',
+          organizer: 'Niger',
         },
         {
           id: 2,
-          name: 'Minerva Hooper',
-          salary: '$23,789',
-          country: 'Curaçao',
-          city: 'Sinaai-Waas',
+          title: 'Minerva Hooper',
+          organizer: 'Curaçao',
         },
         {
           id: 3,
-          name: 'Sage Rodriguez',
-          salary: '$56,142',
-          country: 'Netherlands',
-          city: 'Baileux',
+          title: 'Sage Rodriguez',
+          organizer: 'Netherlands',
         },
         {
           id: 4,
-          name: 'Philip Chaney',
-          salary: '$38,735',
-          country: 'Korea, South',
-          city: 'Overland Park',
+          title: 'Philip Chaney',
+          organizer: 'Korea, South',
         },
         {
           id: 5,
-          name: 'Doris Greene',
-          salary: '$63,542',
-          country: 'Malawi',
-          city: 'Feldkirchen in Kärnten',
+          title: 'Doris Greene',
+          organizer: 'Malawi',
         },
       ],
     }
@@ -59,25 +49,13 @@ export default {
     this.columns = [
       {
         sortable: true,
-        label: 'Name',
-        property: 'name',
+        label: 'Title',
+        property: 'title',
       },
       {
         sortable: true,
-        label: 'Country',
-        property: 'country',
-      },
-      {
-        sortable: true,
-        label: 'City',
-        property: 'city',
-      },
-      {
-        sortable: true,
-        label: 'Salary',
-        property: 'salary',
-        align: 'right',
-        headerAlign: 'right',
+        label: 'Organizer',
+        property: 'organizer',
       },
     ]
   },

@@ -10,14 +10,29 @@
         required
         :disabled="titleType === 'Detail'"
       />
-      <base-input
-        v-model="year"
-        type="text"
-        label="Year"
-        placeholder="Year"
-        required
-        :disabled="titleType === 'Detail'"
-      />
+      <div class="row">
+        <div class="col-6">
+          <base-input
+            v-model="organizer"
+            type="text"
+            label="Organizer"
+            placeholder="Organizer"
+            required
+            :disabled="titleType === 'Detail'"
+          />
+        </div>
+
+        <div class="col-6">
+          <base-input
+            v-model="year"
+            type="text"
+            label="Year"
+            placeholder="Year"
+            required
+            :disabled="titleType === 'Detail'"
+          />
+        </div>
+      </div>
 
       <base-input label="Description" required>
         <textarea
@@ -27,6 +42,14 @@
           :disabled="titleType === 'Detail'"
         />
       </base-input>
+      <base-input
+        v-model="image"
+        type="text"
+        label="Image"
+        placeholder="Image"
+        required
+        :disabled="titleType === 'Detail'"
+      />
 
       <div class="d-flex justify-content-end">
         <base-button native-type="submit" type="primary" class="btn-fill">
@@ -40,9 +63,11 @@
 export default {
   data() {
     return {
-      year: '',
       title: '',
+      organizer: '',
+      year: '',
       description: '',
+      image: '',
       loading: false,
     }
   },

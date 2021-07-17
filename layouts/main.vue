@@ -50,6 +50,7 @@ function initScrollbar(className) {
 }
 
 export default {
+  name: 'MainLayout',
   components: {
     DashboardNavbar,
     ContentFooter,

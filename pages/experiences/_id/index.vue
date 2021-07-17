@@ -8,9 +8,7 @@
 import ExperienceForm from '@/modules/experience/Form'
 export default {
   name: 'DetailExperiencePage',
+  components: { ExperienceForm },
   layout: 'main',
-  components: {
-    ExperienceForm,
-  },
 }
 </script>

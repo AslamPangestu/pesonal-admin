@@ -220,6 +220,7 @@ export default {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
   },
+  layout: 'main',
   data() {
     return {
       tableData: [

@@ -35,7 +35,6 @@
       </ul>
       <div class="copyright">
         &copy; {{ year }}, made with <i class="tim-icons icon-heart-2"></i> by
-        
         <a
           href="https://www.creative-tim.com/?ref=pdf-vuejs"
           target="_blank"
@@ -51,9 +50,8 @@
 export default {
   data() {
     return {
-      year: new Date().getFullYear()
-    };
-  }
-};
+      year: new Date().getFullYear(),
+    }
+  },
+}
 </script>
-<style></style>

@@ -1,9 +1,7 @@
 <template>
   <div class="not-found-page">
     <div class="centered">
-      <h1>
-        <i class="not-found-icon nc-icon nc-puzzle-10"></i>{{ statusCode }}
-      </h1>
+      <h1><i class="fas fa-exclamation-circle" /> {{ statusCode }}</h1>
       <p>{{ statusMessage }}</p>
     </div>
   </div>
@@ -48,8 +46,8 @@ export default {
     p {
       font-size: 20px;
     }
+    min-height: 100vh;
     display: flex;
-    padding-bottom: 150px;
     flex-direction: column;
     align-items: center;
     justify-content: center;

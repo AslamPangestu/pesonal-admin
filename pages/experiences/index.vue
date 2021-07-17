@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'ExperiencePage',
+  layout: 'main',
   data() {
     return {
       currentPage: 2,

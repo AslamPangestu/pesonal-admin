@@ -13,6 +13,7 @@
 <script>
 export default {
   name: 'PortfolioPage',
+  layout: 'main',
   data() {
     return {
       tableData: [

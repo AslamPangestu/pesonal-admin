@@ -106,12 +106,9 @@ export default {
     },
     isActive() {
       if (this.$route && this.$route.path) {
-        const matchingRoute = this.children.find((c) =>
-          this.$route.path.startsWith(c.link.path)
-        )
-        if (matchingRoute !== undefined) {
-          return true
-        }
+        const currentPath = this.$route.path.split('/')[1]
+        const itemPath = this.link.path.split('/')[1]
+        return currentPath === itemPath
       }
       return false
     },

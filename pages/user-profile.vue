@@ -15,5 +15,6 @@ export default {
     EditForm,
     UploadAvatar,
   },
+  layout: 'main',
 }
 </script>

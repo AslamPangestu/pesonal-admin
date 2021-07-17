@@ -1,6 +1,6 @@
 <template>
   <card v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.8)">
-    <h5 slot="header" class="title">{{ titleType }} Experience</h5>
+    <h5 slot="header" class="title">{{ titleType }} Portfolio</h5>
     <form @submit.prevent="update">
       <base-input
         v-model="title"

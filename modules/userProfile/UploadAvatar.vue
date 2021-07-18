@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     submit() {
-      alert('Your data: ' + JSON.stringify(this.user))
+      this.$emit('submit')
     },
   },
 }

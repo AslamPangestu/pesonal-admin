@@ -1,7 +1,7 @@
 <template>
-  <div class="row">
-    <div class="col-md-4"><upload-avatar /></div>
-    <div class="col-md-8"><edit-form /></div>
+  <div v-loading.fullscreen.lock="loading" class="row">
+    <div class="col-md-4"><upload-avatar @submit="updateAvatar" /></div>
+    <div class="col-md-8"><edit-form @submit="updateProfile" /></div>
   </div>
 </template>
 
@@ -16,5 +16,22 @@ export default {
     UploadAvatar,
   },
   layout: 'main',
+  data() {
+    return {
+      loading: false,
+    }
+  },
+  methods: {
+    updateAvatar() {
+      this.loading = true
+      // TODO: Submit
+      this.loading = false
+    },
+    updateProfile() {
+      this.loading = true
+      // TODO: Submit
+      this.loading = false
+    },
+  },
 }
 </script>

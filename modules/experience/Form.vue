@@ -1,7 +1,7 @@
 <template>
   <card v-loading="loading" element-loading-background="rgba(0, 0, 0, 0.8)">
     <h5 slot="header" class="title">{{ titleType }} Experience</h5>
-    <form @submit.prevent="update">
+    <form @submit.prevent="submit">
       <base-input
         v-model="title"
         type="text"
@@ -67,8 +67,8 @@ export default {
     }
   },
   methods: {
-    update() {
-      alert('Your data: ' + JSON.stringify(this.user))
+    submit() {
+      this.$emit('submit')
     },
   },
 }

@@ -1,11 +1,7 @@
 <template>
-  <card
-    v-loading="loading"
-    class="col-md-3"
-    element-loading-background="rgba(0, 0, 0, 0.8)"
-  >
+  <card class="col-md-3">
     <div class="d-flex justify-content-center">
-      <h4 slot="header" class="title">Login</h4>
+      <h4 slot="header" class="dialog-title">Login</h4>
     </div>
     <form @submit.prevent="login">
       <base-input
@@ -22,9 +18,9 @@
       />
 
       <div class="d-flex justify-content-center">
-        <base-button native-type="submit" type="primary" class="btn-fill">
-          Login
-        </base-button>
+        <base-button native-type="submit" type="primary" block
+          >Login</base-button
+        >
       </div>
     </form>
   </card>
@@ -35,12 +31,11 @@ export default {
     return {
       username: '',
       password: '',
-      loading: false,
     }
   },
   methods: {
     login() {
-      alert('Your data: ' + JSON.stringify(this.user))
+      this.$emit('submit')
     },
   },
 }

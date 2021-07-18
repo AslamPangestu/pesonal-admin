@@ -1,9 +1,6 @@
 <template>
-  <card
-    v-loading="loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)"
-    card-body-classes="table-full-width"
-  >
+  <card v-loading="loading" card-body-classes="table-full-width">
+    <div class="row" />
     <div class="d-flex justify-content-between">
       <h4 slot="header" class="card-title">{{ title }}</h4>
       <nuxt-link :to="`${currentPath}/create`">

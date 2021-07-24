@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import BaseSwitch from '@/components/BaseSwitch'
+import BaseSwitch from '@/components/Form/BaseSwitch'
 
 export default {
   name: 'SidebarShare',
@@ -43,7 +43,7 @@ export default {
     BaseSwitch,
   },
   props: {
-    backgroundColor: String,
+    backgroundColor: { type: String, default: '' },
   },
   data() {
     return {

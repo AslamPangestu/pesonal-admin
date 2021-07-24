@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import BaseInput from '@/components/Inputs/BaseInput'
-import BaseDropdown from '@/components/BaseDropdown'
-import Card from '@/components/Cards/Card'
-import BaseButton from '@/components/BaseButton'
-import BaseCheckbox from '@/components/Inputs/BaseCheckbox'
 import { Input, InputNumber, Tooltip, Loading, Dialog } from 'element-ui'
+import BaseInput from '@/components/Form/BaseInput'
+import BaseDropdown from '@/components/Form/BaseDropdown'
+import Card from '@/components/Cards/Card'
+import BaseButton from '@/components/Form/BaseButton'
+import BaseCheckbox from '@/components/Form/BaseCheckbox'
 /**
  * You can register global components here and use them as a plugin in your main Vue instance
  */

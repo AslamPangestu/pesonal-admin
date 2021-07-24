@@ -104,16 +104,9 @@ Within the download you'll find the following directories and files:
     |   |-- Badge.vue
     |   |-- BaseAlert.vue
     |   |-- BaseButton.vue
-    |   |-- BaseDropdown.vue
-    |   |-- BasePagination.vue
-    |   |-- BaseProgress.vue
     |   |-- BaseSwitch.vue
     |   |-- BaseTable.vue
-    |   |-- CloseButton.vue
-    |   |-- LoadingPanel.vue
-    |   |-- Modal.vue
     |   |-- README.md
-    |   |-- index.js
     |   |-- Breadcrumb
     |   |   |-- Breadcrumb.vue
     |   |   |-- BreadcrumbItem.vue
@@ -125,9 +118,6 @@ Within the download you'll find the following directories and files:
     |   |   |-- LineChart.js
     |   |   |-- config.js
     |   |   |-- utils.js
-    |   |-- Dashboard
-    |   |   |-- TaskList.vue
-    |   |   |-- UserTable.vue
     |   |-- Inputs
     |   |   |-- BaseCheckbox.vue
     |   |   |-- BaseInput.vue
@@ -136,24 +126,14 @@ Within the download you'll find the following directories and files:
     |   |-- Layout
     |   |   |-- Content.vue
     |   |   |-- ContentFooter.vue
-    |   |   |-- DashboardLayout.vue
     |   |   |-- DashboardNavbar.vue
     |   |   |-- LoadingMainPanel.vue
     |   |   |-- SidebarSharePlugin.vue
-    |   |-- Navbar
     |   |   |-- BaseNav.vue
-    |   |   |-- NavbarToggleButton.vue
-    |   |-- NotificationPlugin
-    |   |   |-- Notification.vue
-    |   |   |-- Notifications.vue
-    |   |   |-- index.js
     |   |-- SidebarPlugin
     |   |   |-- SideBar.vue
     |   |   |-- SidebarItem.vue
     |   |   |-- index.js
-    |   |-- UserProfile
-    |   |   |-- EditProfileForm.vue
-    |   |   |-- UserCard.vue
     |-- lang
     |   |-- ar.js
     |   |-- en.js

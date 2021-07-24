@@ -46,9 +46,8 @@
 </template>
 <script>
 // import { CollapseTransition } from 'vue2-transitions'
-import BaseNav from '@/components/Navbar/BaseNav'
-
 import { ReplaceAll, CapitalizeFirstLetter } from '@/util/formatter'
+import BaseNav from './BaseNav'
 
 export default {
   components: {

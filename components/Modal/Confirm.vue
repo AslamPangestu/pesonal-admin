@@ -1,5 +1,11 @@
 <template>
-  <el-dialog :visible.sync="value" :show-close="false" width="30%" center>
+  <el-dialog
+    custom-class="custom-modal"
+    :visible.sync="value"
+    :show-close="false"
+    width="30%"
+    center
+  >
     <span slot="title">
       <h4 class="dialog-title">{{ title }}</h4>
     </span>

@@ -7,13 +7,15 @@
         type="text"
         label="Username"
         placeholder="Username"
+        :error="errors.username"
         required
       />
       <base-input
         v-model="password"
-        type="text"
+        type="password"
         label="Password"
         placeholder="Password"
+        :error="errors.password"
         required
       />
 
@@ -26,11 +28,16 @@
   </card>
 </template>
 <script>
+import { IsEmpty, FormValidate } from '@/util/validation'
 export default {
   data() {
     return {
       username: '',
       password: '',
+      errors: {
+        username: '',
+        password: '',
+      },
       loading: false,
     }
   },
@@ -41,6 +48,11 @@ export default {
   },
   methods: {
     update() {
+      this.errors.username = IsEmpty(this.username)
+      this.errors.password = IsEmpty(this.password)
+      if (FormValidate(this.errors)) {
+        return
+      }
       this.$emit('submit')
     },
   },

@@ -9,12 +9,14 @@
         type="text"
         label="Username"
         placeholder="Username"
+        :error="errors.username"
       />
       <base-input
         v-model="password"
-        type="text"
+        type="password"
         label="Password"
         placeholder="Password"
+        :error="errors.username"
       />
 
       <div class="d-flex justify-content-center">
@@ -26,15 +28,25 @@
   </card>
 </template>
 <script>
+import { IsEmpty, FormValidate } from '@/util/validation'
 export default {
   data() {
     return {
       username: '',
       password: '',
+      errors: {
+        username: '',
+        password: '',
+      },
     }
   },
   methods: {
     login() {
+      this.errors.username = IsEmpty(this.username)
+      this.errors.password = IsEmpty(this.password)
+      if (FormValidate(this.errors)) {
+        return
+      }
       this.$emit('submit')
     },
   },

@@ -9,6 +9,7 @@
         placeholder="Title"
         required
         :disabled="titleType === 'Detail'"
+        :error="errors.year"
       />
       <base-input
         v-model="year"
@@ -17,6 +18,7 @@
         placeholder="Year"
         required
         :disabled="titleType === 'Detail'"
+        :error="errors.title"
       />
 
       <base-input label="Description" required>
@@ -25,6 +27,7 @@
           class="form-control"
           placeholder="Description"
           :disabled="titleType === 'Detail'"
+          :error="errors.description"
         />
       </base-input>
 
@@ -37,12 +40,19 @@
   </card>
 </template>
 <script>
+import { IsEmpty, FormValidate } from '@/util/validation'
+
 export default {
   data() {
     return {
       year: '',
       title: '',
       description: '',
+      errors: {
+        year: '',
+        title: '',
+        description: '',
+      },
       loading: false,
     }
   },
@@ -68,6 +78,12 @@ export default {
   },
   methods: {
     submit() {
+      this.errors.year = IsEmpty(this.year)
+      this.errors.title = IsEmpty(this.title)
+      this.errors.description = IsEmpty(this.description)
+      if (FormValidate(this.errors)) {
+        return
+      }
       this.$emit('submit')
     },
   },

@@ -245,8 +245,15 @@
   }
 }
 
-.el-dialog {
-  background: $default !important;
+.custom-modal {
+  background-color: $default !important;
+}
+.dialog-preview {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+
+}
+.image-preview {
+  max-height: 75vh;
 }
 
 .dialog-title {
@@ -257,7 +264,4 @@
 
 .dialog-content {
   color: $secondary;
-}
-.el-dialog__body {
-  padding: 16px 24px !important;
 }

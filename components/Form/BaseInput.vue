@@ -22,7 +22,7 @@
         <input
           :value="value"
           v-bind="$attrs"
-          class="form-control"
+          :class="`form-control ${type === 'password' && 'password'}`"
           aria-describedby="addon-right addon-left"
           v-on="listeners"
         />
@@ -50,6 +50,11 @@ export default {
   },
   props: {
     required: Boolean,
+    type: {
+      type: String,
+      description: 'Input type',
+      default: '',
+    },
     label: {
       type: String,
       description: 'Input label',
@@ -121,3 +126,11 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.password {
+  -webkit-text-security: disc;
+  -mox-text-security: disc;
+  font-family: text-security-disc;
+}
+</style>

@@ -9,6 +9,7 @@
         placeholder="Title"
         required
         :disabled="titleType === 'Detail'"
+        :error="errors.title"
       />
       <div class="row">
         <div class="col-6">
@@ -19,6 +20,7 @@
             placeholder="Organizer"
             required
             :disabled="titleType === 'Detail'"
+            :error="errors.organizer"
           />
         </div>
 
@@ -30,11 +32,12 @@
             placeholder="Year"
             required
             :disabled="titleType === 'Detail'"
+            :error="errors.year"
           />
         </div>
       </div>
 
-      <base-input label="Description" required>
+      <base-input label="Description" required :error="errors.description">
         <textarea
           v-model="description"
           class="form-control"
@@ -42,12 +45,11 @@
           :disabled="titleType === 'Detail'"
         />
       </base-input>
-      <base-input
-        v-model="image"
-        type="text"
+
+      <base-file-input
+        ref="image"
         label="Image"
-        placeholder="Image"
-        required
+        :default-images="images"
         :disabled="titleType === 'Detail'"
       />
 
@@ -60,6 +62,8 @@
   </card>
 </template>
 <script>
+import { IsEmpty, FormValidate } from '@/util/validation'
+
 export default {
   data() {
     return {
@@ -67,8 +71,23 @@ export default {
       organizer: '',
       year: '',
       description: '',
-      image: '',
+      images: [
+        {
+          name: 'food.jpeg',
+          url: 'http://localhost:3000/img/mike.jpg',
+        },
+        {
+          name: 'food2.jpeg',
+          url: 'http://localhost:3000/img/mike.jpg',
+        },
+      ],
       loading: false,
+      errors: {
+        title: '',
+        organizer: '',
+        year: '',
+        description: '',
+      },
     }
   },
   computed: {
@@ -93,6 +112,14 @@ export default {
   },
   methods: {
     update() {
+      this.errors.title = IsEmpty(this.title)
+      this.errors.organizer = IsEmpty(this.organizer)
+      this.errors.year = IsEmpty(this.year)
+      this.errors.description = IsEmpty(this.description)
+      if (FormValidate(this.errors)) {
+        return
+      }
+      // const images = this.$refs.image.getUploadedFiles()
       this.$emit('submit')
     },
   },

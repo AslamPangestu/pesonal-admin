@@ -9,6 +9,7 @@
         placeholder="Name"
         required
         :disabled="titleType === 'Detail'"
+        :error="errors.name"
       />
       <base-input
         v-model="level"
@@ -17,6 +18,7 @@
         placeholder="Level"
         required
         :disabled="titleType === 'Detail'"
+        :error="errors.level"
       />
 
       <div class="d-flex justify-content-end">
@@ -28,12 +30,17 @@
   </card>
 </template>
 <script>
+import { IsEmpty, FormValidate } from '@/util/validation'
 export default {
   data() {
     return {
       name: '',
       level: '',
       loading: false,
+      errors: {
+        name: '',
+        level: '',
+      },
     }
   },
   computed: {
@@ -58,6 +65,11 @@ export default {
   },
   methods: {
     update() {
+      this.errors.name = IsEmpty(this.name)
+      this.errors.level = IsEmpty(this.level)
+      if (FormValidate(this.errors)) {
+        return
+      }
       this.$emit('submit')
     },
   },

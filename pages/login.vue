@@ -30,6 +30,7 @@ export default {
       this.loading = true
       // TODO: Submit
       this.loading = false
+      this.$router.replace('/')
     },
   },
 }

@@ -6,9 +6,19 @@
         <div class="block block-two"></div>
         <div class="block block-three"></div>
         <div class="block block-four"></div>
-        <a href="javascript:void(0)">
-          <img class="avatar" src="img/emilyz.jpg" alt="..." />
-        </a>
+        <div class="cursor-pointer" @click="$refs.file.click()">
+          <img class="avatar" :src="imageUrl" alt="..." />
+
+          <input
+            id="file"
+            ref="file"
+            type="file"
+            name="file"
+            style="display: none"
+            accept="image/*"
+            @change="onFileChange"
+          />
+        </div>
       </div>
 
       <div slot="footer" class="button-container">
@@ -21,17 +31,27 @@
 </template>
 <script>
 export default {
+  props: {
+    defaultImage: { type: String, default: '' },
+  },
   data() {
     return {
-      fullname: '',
-      nickname: '',
-      aboutMe: '',
-      role: '',
+      imageUrl: 'img/emilyz.jpg',
+    }
+  },
+  mounted() {
+    if (this.defaultImage !== '') {
+      this.imageUrl = this.defaultImage
     }
   },
   methods: {
     submit() {
       this.$emit('submit')
+    },
+    onFileChange(e) {
+      const file = e.target.files[0]
+      this.imageUrl = URL.createObjectURL(file)
+      this.$emit('selected', file)
     },
   },
 }
